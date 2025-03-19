@@ -1,37 +1,50 @@
-/*
-  Blink
-
-  Turns an LED on for one second, then off for one second, repeatedly.
-
-  Most Arduinos have an on-board LED you can control. On the UNO, MEGA and ZERO
-  it is attached to digital pin 13, on MKR1000 on pin 6. LED_BUILTIN is set to
-  the correct LED pin independent of which board is used.
-  If you want to know what pin the on-board LED is connected to on your Arduino
-  model, check the Technical Specs of your board at:
-  https://www.arduino.cc/en/Main/Products
-
-  modified 8 May 2014
-  by Scott Fitzgerald
-  modified 2 Sep 2016
-  by Arturo Guadalupi
-  modified 8 Sep 2016
-  by Colby Newman
-
-  This example code is in the public domain.
-
-  https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink
-*/
 #include <Arduino.h>
-// the setup function runs once when you press reset or power the board
+#include <LiquidCrystal.h>
+
+
+const int rs = 3, e = 4, d4 = 6, d5 = 7, d6 = 8, d7 = 9;
+LiquidCrystal lcd(rs,e,d4,d5,d6,d7);
+const int pump[] ={10, 11, 12};
+const int sens[] = {0, 1, 2,};
+int val[sizeof(sens)];
+
+const int pumptime = 1000;
+const int pumpval = 550;
+
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+  // put your setup code here, to run once:
+  lcd.begin(16, 2);
+  for (int i = 0; i < 3; i++){
+    pinMode(pump[i], OUTPUT);
+  }
+   
 }
 
-// the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-  delay(1000);                      // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  delay(1000);                      // wait for a second
+  // put your main code here, to run repeatedly:
+  /*
+  int val[0] = analogRead(sens[0]);
+  int val[1] = analogRead(sens[1]);
+  int val[2] = analogRead(sens[2]);
+*/
+  for (int i = 0; i < 3; i++){
+  val[i] = analogRead(sens[i]);
+  }
+
+lcd.setCursor(0, 0);
+lcd.print(val[0]);
+lcd.setCursor(5,0);
+lcd.print(val[1]);
+lcd.setCursor(10,0);
+lcd.print(val[2]);
+
+  for (int i = 0; i < 3; i++){
+  if (val[i] <= pumpval){
+    digitalWrite(pump[i], HIGH);
+    delay(pumptime);
+  }
+  digitalWrite(pump[i], LOW);
+}
+
+delay(500);
 }
