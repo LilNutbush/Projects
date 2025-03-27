@@ -4,11 +4,7 @@
 const int rs = 3, e = 4, d4 = 6, d5 = 7, d6 = 8, d7 = 9;
 LiquidCrystal lcd(rs, e, d4, d5, d6, d7);
 const int pump[] = {10, 11, 12};
-const int sens[] = {
-    0,
-    1,
-    2,
-};
+const int sens[] = {0, 1, 2};
 int val[sizeof(sens)];
 
 const int pumptime = 1000;
