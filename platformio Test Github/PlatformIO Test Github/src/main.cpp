@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <LiquidCrystal.h>
 
 const int pump[] = {5, 6, 7};
 const int sens[] = {0, 1, 2};
@@ -34,5 +33,5 @@ void loop()
     digitalWrite(pump[i], HIGH);
   }
 
-  delay(500);
+  delay(30000);
 }
