@@ -12,7 +12,6 @@ const int pumpval = 500;
 
 void setup()
 {
-  // put your setup code here, to run once:
   lcd.begin(16, 2);
   for (int i = 0; i < 3; i++)
   {
@@ -22,12 +21,6 @@ void setup()
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
-  /*
-  int val[0] = analogRead(sens[0]);
-  int val[1] = analogRead(sens[1]);
-  int val[2] = analogRead(sens[2]);
-*/
   for (int i = 0; i < 3; i++)
   {
     val[i] = analogRead(sens[i]);
