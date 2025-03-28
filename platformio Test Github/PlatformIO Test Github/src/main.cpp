@@ -5,7 +5,7 @@ const int pump[] = {5, 6, 7};
 const int sens[] = {0, 1, 2};
 int val[sizeof(sens)];
 
-const int pumptime = 160000;
+const long pumptime = 160000;
 const int pumpval = 500;
 
 void setup()
@@ -13,6 +13,7 @@ void setup()
   for (int i = 0; i < 3; i++)
   {
     pinMode(pump[i], OUTPUT);
+    digitalWrite(pump[i], HIGH);
   }
 }
 
@@ -27,10 +28,10 @@ void loop()
   {
     if (val[i] >= pumpval)
     {
-      digitalWrite(pump[i], HIGH);
+      digitalWrite(pump[i], LOW);
       delay(pumptime);
     }
-    digitalWrite(pump[i], LOW);
+    digitalWrite(pump[i], HIGH);
   }
 
   delay(500);
