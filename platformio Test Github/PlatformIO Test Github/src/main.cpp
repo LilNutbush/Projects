@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 const int pump[] = {5, 6, 7};
-const int sens[] = {0, 1, 2};
+const int sens[] = {0, 2, 5};
 int val[sizeof(sens)];
 
 const long pumptime = 160000;
@@ -33,5 +33,5 @@ void loop()
     digitalWrite(pump[i], HIGH);
   }
 
-  delay(30000);
+  delay(10000);
 }
