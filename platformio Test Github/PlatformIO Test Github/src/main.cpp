@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-const int pump[] = {5, 6, 7};
+const int pump[] = {6, 7, 8};
 const int sens[] = {0, 2, 5};
 int val[sizeof(sens)];
 
