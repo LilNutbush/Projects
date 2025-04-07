@@ -2,10 +2,12 @@
 
 const int pump[] = {7, 8};
 const int sens[] = {2, 5};
-int val[sizeof(sens)];
-int nop = sizeof(sens); // number of pots
+const int nop = sizeof(sens); // number of pots(pumps and senors)
+int val[nop];
 
-const long pumptime = 160000;
+const long pumptime = 100000;
+const int pumpdivider = 2;
+
 const int pumpval = 500;
 
 void setup()
@@ -28,10 +30,25 @@ void loop()
   {
     if (val[i] >= pumpval)
     {
+      for (int x = 0; x < pumpdivider; x++)
+      {
+        digitalWrite(pump[i], LOW);
+        delay(pumptime / pumpdivider);
+        digitalWrite(pump[i], HIGH);
+        delay(pumptime);
+      }
+      /*
       digitalWrite(pump[i], LOW);
       delay(pumptime);
+      digitalWrite(pump[i], HIGH);
+      delay(pumptime);
+      digitalWrite(pump[i], LOW);
+      delay(pumptime);
+
     }
     digitalWrite(pump[i], HIGH);
+    */
+    }
   }
 
   delay(10000);
