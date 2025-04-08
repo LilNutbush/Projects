@@ -1,14 +1,14 @@
 #include <Arduino.h>
 
-const int pump[] = {7, 8};
-const int sens[] = {2, 5};
-const int nop = sizeof(sens); // number of pots(pumps and senors)
-int val[nop];
+const int pump[] = {7, 8};    // pumpen stecker
+const int sens[] = {2, 5};    // sensor stecker
+const int nop = sizeof(sens); // anzahl an pflanzen(nop = number of pots)
+int val[nop];                 // variable für sensorwerte
 
-const long pumptime = 100000;
-const int pumpdivider = 2;
+const long pumptime = 100000; // gesamte gießzeit
+const int pumpdivider = 2;    // Aufteilung der gießzeit
 
-const int pumpval = 500;
+const int pumpval = 500; // Schwellwert für sensor
 
 void setup()
 {
@@ -37,17 +37,6 @@ void loop()
         digitalWrite(pump[i], HIGH);
         delay(pumptime);
       }
-      /*
-      digitalWrite(pump[i], LOW);
-      delay(pumptime);
-      digitalWrite(pump[i], HIGH);
-      delay(pumptime);
-      digitalWrite(pump[i], LOW);
-      delay(pumptime);
-
-    }
-    digitalWrite(pump[i], HIGH);
-    */
     }
   }
 
